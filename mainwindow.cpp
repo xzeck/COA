@@ -3,7 +3,7 @@
 #include <QPlainTextEdit>
 #include <QtDebug>
 #include <QMessageBox>
-#include "generatedoubleprecisionfloatingpoint.h"
+#include "ieee754doubleprecision.h"
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -18,21 +18,28 @@ MainWindow::~MainWindow()
   delete ui;
 }
 
-
+//Called if the Evaluate button is clicked
 void MainWindow::on_ValuePushButton_clicked()
 {
-  QString Value = ui->UserValue->text();
+  QString Value = ui->UserValue->text(); //Get text from UserValue LineEdit
 
-  QRegExp re("^[a-zA-Z]");
+  QRegExp re("^[a-zA-Z]"); //Regular Expression pattern, pattern checks for alphabets
+
+  //Checking if the input string is numerical
   if(re.exactMatch(Value))
     {
+      //Show error if the pattern matches, which means that there's alphabet in the given string
       QMessageBox ErrorBox;
       ErrorBox.critical(this, "Value Type Error", "Entered value is not an integer");
       ErrorBox.show();
     }
   else
     {
-      DPFP::GenerateDoublePrecision(Value);
+      IEEE754::Generation Gen; //Object of the class
+
+      QString Bin = Gen.GenerateDoublePrecision(Value); //Getting the binary value
+
+      ui->BinaryDisplayLabel->setText(Bin); //Displaying the Binary Value
     }
 
 }

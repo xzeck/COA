@@ -20,7 +20,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>10</y>
       <width>311</width>
       <height>51</height>
@@ -63,9 +63,9 @@
    <widget class="QLineEdit" name="UserValue">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>350</x>
       <y>10</y>
-      <width>551</width>
+      <width>541</width>
       <height>51</height>
      </rect>
     </property>
@@ -99,6 +99,24 @@
     <layout class="QHBoxLayout" name="BaseHorizontalLayout">
      <item>
       <layout class="QVBoxLayout" name="LabelVerticalLayout">
+       <item>
+        <widget class="QLabel" name="BinaryValueLabel">
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="text">
+          <string>Binary Value :</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QLabel" name="Sign">
          <property name="font">
@@ -167,7 +185,30 @@
      <item>
       <layout class="QVBoxLayout" name="TextVerticalLayout">
        <item>
+        <widget class="QLabel" name="BinaryDisplayLabel">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="SignDisplayLbl">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="frameShape">
           <enum>QFrame::Box</enum>
          </property>
@@ -184,6 +225,11 @@
        </item>
        <item>
         <widget class="QLabel" name="ExponentDisplaylbl">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="frameShape">
           <enum>QFrame::Box</enum>
          </property>
@@ -197,6 +243,11 @@
        </item>
        <item>
         <widget class="QLabel" name="MantisaDisplayLbl">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="frameShape">
           <enum>QFrame::Box</enum>
          </property>

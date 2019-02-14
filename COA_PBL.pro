@@ -25,15 +25,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    generatedoubleprecisionfloatingpoint.cpp \
-    generatebinary.cpp
+    main.cpp \
+    mainwindow.cpp \
+    ieee754doubleprecision.cpp
 
 HEADERS += \
         mainwindow.h \
-    generatedoubleprecisionfloatingpoint.h \
-    generatebinary.h
+    ieee754doubleprecision.h
 
 FORMS += \
         mainwindow.ui
