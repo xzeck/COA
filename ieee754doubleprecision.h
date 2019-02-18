@@ -4,16 +4,18 @@
 #endif // IEE754DOUBLEPRECISION_H
 
 #include <QtGlobal>
+#include <QString>
 
 namespace IEEE754
 {
+   static qint64 steps;// = 0;
+   static QString Binary_Whole;// = "";
+   static QString Binary_Dec;// = "";
+   static QString Mantisa;
 
-  class ReturnStruct{
-  public :
-  static qint64 WholePart;
-  static qint64 DecPart;
-
-  };
+  QString GiveExponentBinary();
+  QString GiveMantisa(QString);
+  void AllocateMantisa();
 
   class Generation
   {
@@ -26,9 +28,10 @@ namespace IEEE754
   class Binary
   {
   public :
-    qint64 GenerateBinaryWholePart(qint64);
 
-    qint64 GenerateBinaryDecimalPart(double);
+    QString GenerateBinaryWholePart(qint64);
+
+    QString GenerateBinaryDecimalPart(double);
 
   };
 

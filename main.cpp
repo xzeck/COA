@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QLabel>
 #include <QPlainTextEdit>
+#include "ieee754doubleprecision.h"
 
 int main(int argc, char *argv[])
 {

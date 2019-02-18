@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>906</width>
-    <height>520</height>
+    <width>911</width>
+    <height>588</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,8 +50,8 @@
    <widget class="QPushButton" name="ValuePushButton">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>400</y>
+      <x>370</x>
+      <y>470</y>
       <width>171</width>
       <height>51</height>
      </rect>
@@ -263,13 +263,55 @@
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="IEEE754NameLbl">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>400</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string>IEEE 754 format</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="IEEE754DisplayLbl">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>400</y>
+      <width>681</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>906</width>
+     <width>911</width>
      <height>23</height>
     </rect>
    </property>

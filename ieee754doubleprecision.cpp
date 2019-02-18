@@ -1,9 +1,12 @@
 #include "ieee754doubleprecision.h"
 #include <QtGlobal>
 #include <QDebug>
+#include <QByteArray>
+#include <vector>
+#include <algorithm>
 
-static IEEE754::Generation Gen;
 static IEEE754::Binary Bin;
+
 
 QString IEEE754::Generation::GenerateDoublePrecision(QString Value) //Generates double precision value
 {
@@ -14,25 +17,26 @@ QString IEEE754::Generation::GenerateDoublePrecision(QString Value) //Generates 
 
     qDebug() << RawValIntPart << " " <<RawValueDecPart; // for debugging purposes
 
-    qint64 Whole = Bin.GenerateBinaryWholePart(RawValIntPart); //Generate Binary of the Whole part
-    qint64 Dec = Bin.GenerateBinaryDecimalPart(RawValueDecPart); //Generate Binary of the Decimal Part
+    QString Whole = Bin.GenerateBinaryWholePart(RawValIntPart); //Generate Binary of the Whole part
+    QString Dec = Bin.GenerateBinaryDecimalPart(RawValueDecPart); //Generate Binary of the Decimal Part
 
     //Formatting stuff ( If Decimal is zero, then there's no need to display)
-    if(Dec == 0)
-      Binary = QString::number(Whole);
+    if(Dec == NULL)
+      Binary = Whole;
     else
-      Binary = QString::number(Whole) + "." + QString::number(Dec);
+      Binary = Whole + "." + Dec;
 
     return Binary;
 }
 
 
-qint64 IEEE754::Binary::GenerateBinaryWholePart(qint64 WholePart)
+QString IEEE754::Binary::GenerateBinaryWholePart(qint64 WholePart)
 {
   {
-    qint64 Binary = 0;
-    int exponent = 1;
-    qint64 steps = 0;
+    IEEE754::steps = 0;
+    std::vector<QString> RevBinWhole;
+    QString RevString;
+    IEEE754::Binary_Whole = "";
 
     while(WholePart != 0)
       {
@@ -40,38 +44,88 @@ qint64 IEEE754::Binary::GenerateBinaryWholePart(qint64 WholePart)
 
         WholePart /=2;
 
-        Binary += Remainder * exponent;
-        exponent *=10;
+        IEEE754::Binary_Whole += QString::number(Remainder);
 
-        steps++;
+        IEEE754::steps++;
       }
 
-    qDebug() << Binary;
+    for( auto x : IEEE754::Binary_Whole)
+      {
+        RevBinWhole.push_back(x);
+      }
+    std::reverse(RevBinWhole.begin(), RevBinWhole.end());
 
-    return Binary;
+    for( auto x : RevBinWhole)
+      {
+        RevString += x;
+      }
+
+    IEEE754::Binary_Whole = RevString;
+
+    qDebug() << "BinWholeRev" << IEEE754::Binary_Whole;
+
+
+    return IEEE754::Binary_Whole;
   }
 
 }
 
-qint64 IEEE754::Binary::GenerateBinaryDecimalPart(double DecimalPart)
+QString IEEE754::Binary::GenerateBinaryDecimalPart(double DecimalPart)
 {
   double temp;
-  qint64 bin = 0;
-  qint64 extract;
+  qint64 IntegerPart;
   temp = DecimalPart;
 
-  for(int i =0; i<=17; i++)
+  for(int i =0; i<=15; i++)
     {
 
       temp = temp * 2;
-      extract = static_cast<qint64>(temp);
+      IntegerPart = static_cast<qint64>(temp);
 
-      temp = temp - extract;
-      bin = (bin + extract) * 10;
+      temp = temp - IntegerPart;
+      IEEE754::Binary_Dec = IEEE754::Binary_Dec + QString::number(IntegerPart);
 
     }
+  qDebug() << "Binary_Dec" << IEEE754::Binary_Dec;
 
-  qDebug() << bin;
+  return IEEE754::Binary_Dec;
+}
 
-  return bin;
+QString IEEE754::GiveExponentBinary()
+{
+  IEEE754::Binary Bin;
+  qint64 Exponent = 1023 + (IEEE754::steps - 1);
+
+  qDebug() << "Steps : " << IEEE754::steps;
+
+  QString ExponentBinary = Bin.GenerateBinaryWholePart(Exponent);
+
+  qDebug() << "Exponent Binary = " << ExponentBinary;
+  return ExponentBinary;
+}
+
+QString IEEE754::GiveMantisa(QString Value)
+{
+    IEEE754::Mantisa = "";
+    QString replica;// = IEEE754::Binary_Whole;
+    std::vector<QString> Mantisa_Vector;
+    double temp = Value.toDouble();
+    qint64 IntegerPart = static_cast<qint64>(temp);
+
+    QString Replica = Bin.GenerateBinaryWholePart(IntegerPart);
+
+
+    for( auto x : Replica)
+      {
+        Mantisa_Vector.push_back(x);
+      }
+
+    for(int i = 2; i <=Mantisa_Vector.size();i++)
+      {
+        replica += Mantisa_Vector[i-1];
+      }
+
+   IEEE754::Mantisa = replica;
+
+   return IEEE754::Mantisa;
 }

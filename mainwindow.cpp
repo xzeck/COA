@@ -5,12 +5,12 @@
 #include <QMessageBox>
 #include "ieee754doubleprecision.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
-
 }
 
 MainWindow::~MainWindow()
@@ -36,10 +36,32 @@ void MainWindow::on_ValuePushButton_clicked()
   else
     {
       IEEE754::Generation Gen; //Object of the class
+      if(Value.toDouble() < 1)
+        {
+          ui->SignDisplayLbl->setText("1");
+        }else
+        {
+          ui->SignDisplayLbl->setText("0");
+        }
 
       QString Bin = Gen.GenerateDoublePrecision(Value); //Getting the binary value
 
+      double BinVal = Bin.toDouble();
+
+      QString Exponent = IEEE754::GiveExponentBinary();
+      QString ExpString = Exponent;
+
+      qDebug() << "Bin Val :" << BinVal;
+
+      QString Mantisa = IEEE754::GiveMantisa(Value);
+
       ui->BinaryDisplayLabel->setText(Bin); //Displaying the Binary Value
+
+      ui->ExponentDisplaylbl->setText(ExpString);
+
+      ui->MantisaDisplayLbl->setText(Mantisa+IEEE754::Binary_Dec);
+
+      qDebug() << "Mantisa :" <<Mantisa;
     }
 
 }
