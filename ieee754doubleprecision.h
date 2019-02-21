@@ -12,10 +12,11 @@ namespace IEEE754
    static QString Binary_Whole;// = "";
    static QString Binary_Dec;// = "";
    static QString Mantisa;
+   static QString ExponentBinary;
 
   QString GiveExponentBinary();
   QString GiveMantisa(QString);
-  void AllocateMantisa();
+  QString FinalVal();
 
   class Generation
   {

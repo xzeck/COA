@@ -22,6 +22,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_ValuePushButton_clicked()
 {
   QString Value = ui->UserValue->text(); //Get text from UserValue LineEdit
+  QString sign = "0";
 
   QRegExp re("^[a-zA-Z]"); //Regular Expression pattern, pattern checks for alphabets
 
@@ -38,9 +39,11 @@ void MainWindow::on_ValuePushButton_clicked()
       IEEE754::Generation Gen; //Object of the class
       if(Value.toDouble() < 1)
         {
+          sign = "1";
           ui->SignDisplayLbl->setText("1");
         }else
         {
+          sign = "0";
           ui->SignDisplayLbl->setText("0");
         }
 
@@ -51,15 +54,19 @@ void MainWindow::on_ValuePushButton_clicked()
       QString Exponent = IEEE754::GiveExponentBinary();
       QString ExpString = Exponent;
 
+
       qDebug() << "Bin Val :" << BinVal;
 
       QString Mantisa = IEEE754::GiveMantisa(Value);
+      QString Final = IEEE754::FinalVal();
 
       ui->BinaryDisplayLabel->setText(Bin); //Displaying the Binary Value
 
       ui->ExponentDisplaylbl->setText(ExpString);
 
       ui->MantisaDisplayLbl->setText(Mantisa+IEEE754::Binary_Dec);
+
+      ui->IEEE754DisplayLbl->setText(sign + " " + Final);
 
       qDebug() << "Mantisa :" <<Mantisa;
     }
