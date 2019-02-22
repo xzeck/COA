@@ -8,19 +8,33 @@
 
 namespace IEEE754
 {
-   static qint64 steps;// = 0;
-   static QString Binary_Whole;// = "";
-   static QString Binary_Dec;// = "";
-   static QString Mantisa;
-   static QString ExponentBinary;
+  static class vars
+  {
+  public :
 
-  QString GiveExponentBinary();
-  QString GiveMantisa(QString);
-  QString FinalVal();
+    qint64 steps;
+    QString Binary_Whole;
+    QString Binary_Dec;
+    QString Mantisa;
+    QString ExponentBinary;
+  }v;
+
+
+   class Finalizers
+   {
+   public :
+
+     QString GiveExponentBinary();
+     QString GiveMantisa(QString);
+     QString FinalVal();
+   };
+
+
 
   class Generation
   {
   public :
+
     QString GenerateDoublePrecision(QString);
 
     void GenerateSinglePrecision(QString);
@@ -33,7 +47,6 @@ namespace IEEE754
     QString GenerateBinaryWholePart(qint64);
 
     QString GenerateBinaryDecimalPart(double);
-
   };
 
 }

@@ -1,9 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "ieee754doubleprecision.h"
+
 #include <QPlainTextEdit>
 #include <QtDebug>
 #include <QMessageBox>
-#include "ieee754doubleprecision.h"
+#include <QString>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -21,8 +23,14 @@ MainWindow::~MainWindow()
 //Called if the Evaluate button is clicked
 void MainWindow::on_ValuePushButton_clicked()
 {
-  QString Value = ui->UserValue->text(); //Get text from UserValue LineEdit
+  IEEE754::Finalizers Fin;
+
+  QString Value, Bin, Exponent, ExpString, Mantisa, Final, Decimal;
   QString sign = "0";
+
+
+
+  Value = ui->UserValue->text(); //Get text from UserValue LineEdit
 
   QRegExp re("^[a-zA-Z]"); //Regular Expression pattern, pattern checks for alphabets
 
@@ -38,37 +46,36 @@ void MainWindow::on_ValuePushButton_clicked()
     {
       IEEE754::Generation Gen; //Object of the class
       if(Value.toDouble() < 1)
-        {
+         {
           sign = "1";
-          ui->SignDisplayLbl->setText("1");
-        }else
-        {
+          Value = Value.split("-")[1];
+         }
+      else
           sign = "0";
-          ui->SignDisplayLbl->setText("0");
-        }
 
-      QString Bin = Gen.GenerateDoublePrecision(Value); //Getting the binary value
-
-      double BinVal = Bin.toDouble();
-
-      QString Exponent = IEEE754::GiveExponentBinary();
-      QString ExpString = Exponent;
+      Bin = Gen.GenerateDoublePrecision(Value); //Getting the binary value
+      Decimal = Bin.split(".")[1];
 
 
-      qDebug() << "Bin Val :" << BinVal;
+      Exponent = Fin.GiveExponentBinary();
+      ExpString = Exponent;
 
-      QString Mantisa = IEEE754::GiveMantisa(Value);
-      QString Final = IEEE754::FinalVal();
+
+      Mantisa = Fin.GiveMantisa(Value);
+      Final = Fin.FinalVal();
+
+
+      ui->SignDisplayLbl->setText(sign);
 
       ui->BinaryDisplayLabel->setText(Bin); //Displaying the Binary Value
 
       ui->ExponentDisplaylbl->setText(ExpString);
 
-      ui->MantisaDisplayLbl->setText(Mantisa+IEEE754::Binary_Dec);
+      ui->MantisaDisplayLbl->setText(Mantisa+Decimal);
 
       ui->IEEE754DisplayLbl->setText(sign + " " + Final);
 
-      qDebug() << "Mantisa :" <<Mantisa;
+      //qDebug() << "Mantisa :" <<Mantisa;
     }
 
 }
