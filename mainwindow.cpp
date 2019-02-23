@@ -27,7 +27,7 @@ void MainWindow::on_ValuePushButton_clicked()
   Initializer();
 
   Finalizers Fin;
-  QString Value, Bin, Exponent, ExpString, Mantisa, Final, Decimal;
+  QString Value, Bin,Final;
   QString sign = "0";
   QRegExp re("^[a-zA-Z]"); //Regular Expression pattern, pattern checks for alphabets
 
@@ -54,14 +54,10 @@ void MainWindow::on_ValuePushButton_clicked()
           sign = "0";
 
       Bin = Gen.GenerateDoublePrecision(Value); //Getting the binary value
-      Decimal = Bin.split(".")[1];
 
+      Fin.GiveExponentBinary();
 
-      Exponent = Fin.GiveExponentBinary();
-      ExpString = Exponent;
-
-
-      Mantisa = Fin.GiveMantisa(Value);
+      Fin.GiveMantisa(Value);
       Final = Fin.FinalVal();
 
 
@@ -73,7 +69,7 @@ void MainWindow::on_ValuePushButton_clicked()
 
       ui->MantisaDisplayLbl->setText(Mantisa+Binary_Dec);
 
-      ui->IEEE754DisplayLbl->setText(sign + " " + Final);
+      ui->IEEE754DisplayLbl->setText(sign + " " + ExponentBinary + " 1 " + Mantisa + Binary_Dec);
 
       //qDebug() << "Mantisa :" <<Mantisa;
     }
