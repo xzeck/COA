@@ -5,21 +5,27 @@
 #include <algorithm>
 
 
-qint64 steps;
-QString Binary_Whole;
-QString Binary_Dec;
+qint64  Steps;
+QString Value;
+QString BinaryWhole;
+QString BinaryDec;
 QString Mantisa;
 QString ExponentBinary;
 QString Binary_Final;
+bool    Sign;
 
 void Initializer()
 {
-   steps = 0;
-   Binary_Whole = "";
-   Binary_Dec  = "";
-   Mantisa = "";
+   Steps = 0;
+   Sign  = 0;
+
+   BinaryWhole    = "";
+   BinaryDec      = "";
+   Mantisa        = "";
    ExponentBinary = "";
-   Binary_Final = "";
+   Binary_Final   = "";
+   Value          = "";
+
 }
 
 
@@ -50,10 +56,10 @@ QString Generation::GenerateDoublePrecision(QString Value) //Generates double pr
 
 QString Binary::GenerateBinaryWholePart(qint64 WholePart)
 {
-    steps = 0;
+    Steps = 0;
     std::vector<QString> RevBinWhole;
     QString RevString;
-    Binary_Whole = "";
+    BinaryWhole = "";
 
     //Generates binary value of the whole part and counts the number of steps
     while(WholePart != 0)
@@ -62,13 +68,13 @@ QString Binary::GenerateBinaryWholePart(qint64 WholePart)
 
         WholePart /=2;
 
-        Binary_Whole += QString::number(Remainder);
+        BinaryWhole += QString::number(Remainder);
 
-        steps++;
+        Steps++;
       }
 
     //Push the value to a vector
-    for( auto x : Binary_Whole)
+    for( auto x : BinaryWhole)
       {
         RevBinWhole.push_back(x);
       }
@@ -83,11 +89,11 @@ QString Binary::GenerateBinaryWholePart(qint64 WholePart)
       }
 
     //Assign to Binary_Whole so that it can be accessed anywheere in this instance
-    Binary_Whole = RevString;
+    BinaryWhole = RevString;
 
     //qDebug() << "BinWholeRev" << Binary_Whole;
 
-    return Binary_Whole;
+    return BinaryWhole;
   }
 
 
@@ -104,18 +110,18 @@ QString Binary::GenerateBinaryDecimalPart(double DecimalPart)
       IntegerPart = static_cast<qint64>(temp);
 
       temp = temp - IntegerPart;
-      Binary_Dec = Binary_Dec + QString::number(IntegerPart);
+      BinaryDec = BinaryDec + QString::number(IntegerPart);
 
     }
   //qDebug() << "Binary_Dec" << Binary_Dec;
 
-  return Binary_Dec;
+  return BinaryDec;
 }
 
 QString Finalizers::GiveExponentBinary()
 {
   Binary Bin;
-  qint64 Exponent = 1023 + (steps - 1);
+  qint64 Exponent = 1023 + (Steps - 1);
 
   //qDebug() << "Steps : " << IEEE754::steps;
 
@@ -156,7 +162,7 @@ QString Finalizers::FinalVal()
 {
     QString DoublePrecisionFormat = "";
 
-    DoublePrecisionFormat = " " + ExponentBinary + " " + "1" + Mantisa + Binary_Dec;
+    DoublePrecisionFormat = " " + ExponentBinary + " " + "1" + Mantisa + BinaryDec;
 
     //qDebug() << "Final : " << DoublePrecisionFormat;
 

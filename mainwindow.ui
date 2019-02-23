@@ -20,7 +20,11 @@
    <string>IEE754 Converter</string>
   </property>
   <property name="autoFillBackground">
-   <bool>true</bool>
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">border-color: rgb(233, 30, 99);
+selection-color: rgb(170, 85, 127);</string>
   </property>
   <property name="documentMode">
    <bool>false</bool>
@@ -35,10 +39,22 @@
       <height>51</height>
      </rect>
     </property>
+    <property name="maximumSize">
+     <size>
+      <width>311</width>
+      <height>51</height>
+     </size>
+    </property>
     <property name="font">
      <font>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -77,8 +93,8 @@
      <rect>
       <x>350</x>
       <y>10</y>
-      <width>541</width>
-      <height>51</height>
+      <width>540</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="font">
@@ -91,6 +107,9 @@
     </property>
     <property name="toolTip">
      <string>Type your number here</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="placeholderText">
      <string>Enter Number</string>
@@ -116,37 +135,58 @@
       <layout class="QVBoxLayout" name="LabelVerticalLayout">
        <item>
         <widget class="QLabel" name="BinaryValueLabel">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>51</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>16</pointsize>
           </font>
          </property>
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
+         <property name="styleSheet">
+          <string notr="true"/>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
+         <property name="lineWidth">
+          <number>5</number>
+         </property>
          <property name="text">
-          <string>Binary Value :</string>
+          <string>   Binary Value :</string>
+         </property>
+         <property name="margin">
+          <number>1</number>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="Sign">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>51</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>16</pointsize>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="frameShape">
-          <enum>QFrame::Box</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
          <property name="text">
-          <string>Sign :</string>
+          <string>   Sign :</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -155,19 +195,28 @@
        </item>
        <item>
         <widget class="QLabel" name="Exponent">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>51</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>16</pointsize>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="frameShape">
-          <enum>QFrame::Box</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
          <property name="text">
-          <string>Exponent :</string>
+          <string>   Exponent :</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -176,19 +225,28 @@
        </item>
        <item>
         <widget class="QLabel" name="Mantisa">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>51</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>16</pointsize>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="frameShape">
-          <enum>QFrame::Box</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
          <property name="text">
-          <string>Mantisa :</string>
+          <string>   Mantisa :</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -201,6 +259,12 @@
       <layout class="QVBoxLayout" name="TextVerticalLayout">
        <item>
         <widget class="QLabel" name="BinaryDisplayLabel">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>51</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>14</pointsize>
@@ -209,8 +273,11 @@
          <property name="toolTip">
           <string>Displays the Binary value of number you entered</string>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="frameShape">
-          <enum>QFrame::Box</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
@@ -222,6 +289,12 @@
        </item>
        <item>
         <widget class="QLabel" name="SignDisplayLbl">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>51</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>14</pointsize>
@@ -230,8 +303,12 @@
          <property name="toolTip">
           <string>Shows the sign of the number, 0 is for positive and 1 is for negative</string>
          </property>
+         <property name="styleSheet">
+          <string notr="true">
+</string>
+         </property>
          <property name="frameShape">
-          <enum>QFrame::Box</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
@@ -246,6 +323,12 @@
        </item>
        <item>
         <widget class="QLabel" name="ExponentDisplaylbl">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>51</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>14</pointsize>
@@ -254,8 +337,11 @@
          <property name="toolTip">
           <string>Shows the binary value of the exponent</string>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="frameShape">
-          <enum>QFrame::Box</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
@@ -267,6 +353,12 @@
        </item>
        <item>
         <widget class="QLabel" name="MantisaDisplayLbl">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>51</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>14</pointsize>
@@ -275,8 +367,11 @@
          <property name="toolTip">
           <string>Displays the Mantisa</string>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="frameShape">
-          <enum>QFrame::Box</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
@@ -304,6 +399,9 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
     </property>
@@ -328,8 +426,14 @@
     <property name="toolTip">
      <string>Final converted format with  implied 1</string>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
     </property>
     <property name="text">
      <string/>

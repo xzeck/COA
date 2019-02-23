@@ -7,13 +7,14 @@
 #include <QString>
 
 
-  extern qint64 steps;
-  extern QString Binary_Whole;
-  extern QString Binary_Dec;
+  extern qint64 Steps;
+  extern QString Value;
+  extern QString BinaryWhole;
+  extern QString BinaryDec;
   extern QString Mantisa;
   extern QString ExponentBinary;
   extern QString Binary_Final;
-
+  extern bool    Sign;
 
    void Initializer();
 
