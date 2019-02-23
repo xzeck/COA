@@ -4,10 +4,28 @@
 #include <vector>
 #include <algorithm>
 
-IEEE754::Binary Bin;
 
-QString IEEE754::Generation::GenerateDoublePrecision(QString Value) //Generates double precision value
+qint64 steps;
+QString Binary_Whole;
+QString Binary_Dec;
+QString Mantisa;
+QString ExponentBinary;
+QString Binary_Final;
+
+void Initializer()
 {
+   steps = 0;
+   Binary_Whole = "";
+   Binary_Dec  = "";
+   Mantisa = "";
+   ExponentBinary = "";
+   Binary_Final = "";
+}
+
+
+QString Generation::GenerateDoublePrecision(QString Value) //Generates double precision value
+{
+    Binary Bin;
     double RawValue = Value.toDouble(); //Get the Raw from QString and convert to Double
     qint64 RawValIntPart = static_cast<qint64>(RawValue); //Static cast RawValue to Int, to get the Integer part and remove decimal value
     double RawValueDecPart = RawValue - RawValIntPart; // Subtracting Int part from Raw value to get decimal value
@@ -24,17 +42,18 @@ QString IEEE754::Generation::GenerateDoublePrecision(QString Value) //Generates 
     else
       Binary = Whole + "." + Dec;
 
-    return Binary;
+    Binary_Final = Binary;
+
+    return Binary_Final;
 }
 
 
-QString IEEE754::Binary::GenerateBinaryWholePart(qint64 WholePart)
+QString Binary::GenerateBinaryWholePart(qint64 WholePart)
 {
-
-    v.steps = 0;
+    steps = 0;
     std::vector<QString> RevBinWhole;
     QString RevString;
-    IEEE754::v.Binary_Whole = "";
+    Binary_Whole = "";
 
     //Generates binary value of the whole part and counts the number of steps
     while(WholePart != 0)
@@ -43,13 +62,13 @@ QString IEEE754::Binary::GenerateBinaryWholePart(qint64 WholePart)
 
         WholePart /=2;
 
-        v.Binary_Whole += QString::number(Remainder);
+        Binary_Whole += QString::number(Remainder);
 
-        v.steps++;
+        steps++;
       }
 
     //Push the value to a vector
-    for( auto x : v.Binary_Whole)
+    for( auto x : Binary_Whole)
       {
         RevBinWhole.push_back(x);
       }
@@ -64,15 +83,15 @@ QString IEEE754::Binary::GenerateBinaryWholePart(qint64 WholePart)
       }
 
     //Assign to Binary_Whole so that it can be accessed anywheere in this instance
-    v.Binary_Whole = RevString;
+    Binary_Whole = RevString;
 
     //qDebug() << "BinWholeRev" << Binary_Whole;
 
-    return v.Binary_Whole;
+    return Binary_Whole;
   }
 
 
-QString IEEE754::Binary::GenerateBinaryDecimalPart(double DecimalPart)
+QString Binary::GenerateBinaryDecimalPart(double DecimalPart)
 {
   double temp;
   qint64 IntegerPart;
@@ -85,30 +104,31 @@ QString IEEE754::Binary::GenerateBinaryDecimalPart(double DecimalPart)
       IntegerPart = static_cast<qint64>(temp);
 
       temp = temp - IntegerPart;
-      IEEE754::v.Binary_Dec = IEEE754::v.Binary_Dec + QString::number(IntegerPart);
+      Binary_Dec = Binary_Dec + QString::number(IntegerPart);
 
     }
   //qDebug() << "Binary_Dec" << Binary_Dec;
 
-  return v.Binary_Dec;
+  return Binary_Dec;
 }
 
-QString IEEE754::Finalizers::GiveExponentBinary()
+QString Finalizers::GiveExponentBinary()
 {
-  IEEE754::Binary Bin;
-  qint64 Exponent = 1023 + (IEEE754::v.steps - 1);
+  Binary Bin;
+  qint64 Exponent = 1023 + (steps - 1);
 
   //qDebug() << "Steps : " << IEEE754::steps;
 
-  IEEE754::v.ExponentBinary = Bin.GenerateBinaryWholePart(Exponent);
+  ExponentBinary = Bin.GenerateBinaryWholePart(Exponent);
 
   //qDebug() << "Exponent Binary = " << ExponentBinary;
-  return v.ExponentBinary;
+  return ExponentBinary;
 }
 
-QString IEEE754::Finalizers::GiveMantisa(QString Value)
+QString Finalizers::GiveMantisa(QString Value)
 {
-    IEEE754::v.Mantisa = "";
+    Binary Bin;
+    Mantisa = "";
     QString replica;
     std::vector<QString> Mantisa_Vector;
     double temp = Value.toDouble();
@@ -127,16 +147,16 @@ QString IEEE754::Finalizers::GiveMantisa(QString Value)
         replica += Mantisa_Vector[i-1];
       }
 
-   IEEE754::v.Mantisa = replica;
+   Mantisa = replica;
 
-   return IEEE754::v.Mantisa;
+   return Mantisa;
 }
 
-QString IEEE754::Finalizers::FinalVal()
+QString Finalizers::FinalVal()
 {
     QString DoublePrecisionFormat = "";
 
-    DoublePrecisionFormat = " " + IEEE754::v.ExponentBinary + " " + "1" + IEEE754::v.Mantisa + IEEE754::v.Binary_Dec;
+    DoublePrecisionFormat = " " + ExponentBinary + " " + "1" + Mantisa + Binary_Dec;
 
     //qDebug() << "Final : " << DoublePrecisionFormat;
 

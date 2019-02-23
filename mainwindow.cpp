@@ -23,16 +23,16 @@ MainWindow::~MainWindow()
 //Called if the Evaluate button is clicked
 void MainWindow::on_ValuePushButton_clicked()
 {
-  IEEE754::Finalizers Fin;
 
+  Initializer();
+
+  Finalizers Fin;
   QString Value, Bin, Exponent, ExpString, Mantisa, Final, Decimal;
   QString sign = "0";
-
+  QRegExp re("^[a-zA-Z]"); //Regular Expression pattern, pattern checks for alphabets
 
 
   Value = ui->UserValue->text(); //Get text from UserValue LineEdit
-
-  QRegExp re("^[a-zA-Z]"); //Regular Expression pattern, pattern checks for alphabets
 
   //Checking if the input string is numerical
   if(re.exactMatch(Value))
@@ -44,7 +44,7 @@ void MainWindow::on_ValuePushButton_clicked()
     }
   else
     {
-      IEEE754::Generation Gen; //Object of the class
+      Generation Gen; //Object of the class
       if(Value.toDouble() < 1)
          {
           sign = "1";
@@ -67,11 +67,11 @@ void MainWindow::on_ValuePushButton_clicked()
 
       ui->SignDisplayLbl->setText(sign);
 
-      ui->BinaryDisplayLabel->setText(Bin); //Displaying the Binary Value
+      ui->BinaryDisplayLabel->setText(Binary_Final); //Displaying the Binary Value
 
-      ui->ExponentDisplaylbl->setText(ExpString);
+      ui->ExponentDisplaylbl->setText(ExponentBinary);
 
-      ui->MantisaDisplayLbl->setText(Mantisa+Decimal);
+      ui->MantisaDisplayLbl->setText(Mantisa+Binary_Dec);
 
       ui->IEEE754DisplayLbl->setText(sign + " " + Final);
 

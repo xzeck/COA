@@ -18,10 +18,6 @@ public:
 private slots:
   void on_ValuePushButton_clicked();
 
-  void on_UserValue_editingFinished();
-
-  void on_actionFile_triggered();
-
 private:
   Ui::MainWindow *ui;
 };

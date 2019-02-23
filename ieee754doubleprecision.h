@@ -6,19 +6,16 @@
 #include <QtGlobal>
 #include <QString>
 
-namespace IEEE754
-{
-  static class vars
-  {
-  public :
 
-    qint64 steps;
-    QString Binary_Whole;
-    QString Binary_Dec;
-    QString Mantisa;
-    QString ExponentBinary;
-  }v;
+  extern qint64 steps;
+  extern QString Binary_Whole;
+  extern QString Binary_Dec;
+  extern QString Mantisa;
+  extern QString ExponentBinary;
+  extern QString Binary_Final;
 
+
+   void Initializer();
 
    class Finalizers
    {
@@ -49,4 +46,4 @@ namespace IEEE754
     QString GenerateBinaryDecimalPart(double);
   };
 
-}
+
