@@ -7,23 +7,27 @@
 #include <QMessageBox>
 #include <QString>
 #include <QRegularExpression>
+#include <QDesktopServices>
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
+  this->setStyleSheet("background-color: #ffffff;");
+  this->setStyleSheet("QLabel{border:2px solid #009688}; border-radius:10px;");
+  ui->UserValue->setStyleSheet("border:3px solid #009688; border-radius:10px;");
+  ui->ValuePushButton->setStyleSheet("border:2px solid #009688; border-radius:10px;");
+  ui->DarkModeCheckBox->setCheckState(Qt::CheckState::Checked);
 
-  this->setStyleSheet("QLabel{border:2px solid #009688}; border-radius:10px");
-  ui->UserValue->setStyleSheet("border:3px solid #009688; border-radius:10px");
-  ui->ValuePushButton->setStyleSheet("border:2px solid #009688; border-radius:10px");
 }
+
 
 MainWindow::~MainWindow()
 {
   delete ui;
-
 }
+
 
 bool CheckValueAndAssignSign()
 {
@@ -48,6 +52,8 @@ bool CheckValueAndAssignSign()
 
   return true;
 }
+
+
 //Called if the Evaluate button is clicked
 void MainWindow::on_ValuePushButton_clicked()
 {
@@ -64,16 +70,16 @@ void MainWindow::on_ValuePushButton_clicked()
   //Checking if the input string is numerical
   if(false == CheckValueAndAssignSign())
     {
-      //Show error if the pattern matches, which means that there's alphabet in the given string
-      /*QMessageBox ErrorBox;
-      ErrorBox.critical(this, "Value Type Error", "Entered value is not an integer");
-      ErrorBox.show();*/
 
       ui->UserValue->setStyleSheet("border:3px solid #E91E63; border-radius:10px");
-
+      ui->ValuePushButton->setStyleSheet("border:3px solid #E91E63; border-radius:10px");
+      ui->UserValue->clear();
     }
   else
     {
+      ui->ValuePushButton->setStyleSheet("border:3px solid #673AB7; border-radius:10px");
+      ui->UserValue->setStyleSheet("border:3px solid #009688; border-radius:10px");
+
       Generation Gen; //Object of the class
 
       Bin = Gen.GenerateDoublePrecision(Value); //Getting the binary value
@@ -86,7 +92,7 @@ void MainWindow::on_ValuePushButton_clicked()
 
       ui->SignDisplayLbl->setText(QString::number(Sign)); //Displays the sign to the label
 
-      ui->BinaryDisplayLabel->setText(Binary_Final); //Displaying the Binary value on the label
+      ui->BinaryDisplayLabel->setText(BinaryFinal); //Displaying the Binary value on the label
 
       ui->ExponentDisplaylbl->setText(ExponentBinary); //Displays the Exponent value on the label
 
@@ -96,8 +102,67 @@ void MainWindow::on_ValuePushButton_clicked()
 
       //qDebug() << "Mantisa :" <<Mantisa;
     }
-
 }
 
 
 
+
+void MainWindow::on_checkBox_stateChanged(int arg1)
+{
+    if(2 == arg1)
+      {
+
+        this->setStyleSheet("background-color: #2C3539;");
+        this->setStyleSheet("QLabel{border:2px solid #009688}; border-radius:10px;");
+        ui->UserValue->setStyleSheet("border:3px solid #009688; border-radius:10px;");
+        ui->ValuePushButton->setStyleSheet("border:2px solid #009688; border-radius:10px;");
+      }
+    else if (0 == arg1)
+      {
+        this->setStyleSheet("background-color: #EDF1E7;color : black");
+
+      }
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+
+  QMessageBox Message;
+  QRect  Geo = MainWindow::geometry();
+  int MboxWidth = Geo.width()/4;
+  int MBoxHeight = Geo.height()/4;
+
+  int X = Geo.x() + Geo.width()/2 - (MboxWidth/2);
+  int Y = Geo.y() + Geo.height()/2 - (MBoxHeight/2);
+  Message.setGeometry(X,Y,MboxWidth, MBoxHeight);
+  Message.setInformativeText("Project : Converting given input to IEEE 754 Double Precision Format\n\nAjay Nair : 402");
+  Message.setIcon(Message.Information);
+  Message.button(Message.Ok);
+  Message.exec();
+}
+
+void MainWindow::on_actionGitHub_triggered()
+{
+
+  if(!QDesktopServices::openUrl(QUrl("https://github.com/xzeck/",QUrl::TolerantMode)))
+    {
+      QMessageBox Message;
+      QRect  Geo = MainWindow::geometry();
+      int MboxWidth = Geo.width()/4;
+      int MBoxHeight = Geo.height()/4;
+
+      int X = Geo.x() + Geo.width()/2 - (MboxWidth/2);
+      int Y = Geo.y() + Geo.height()/2 - (MBoxHeight/2);
+      Message.setGeometry(X,Y,MboxWidth, MBoxHeight);
+      Message.setInformativeText("Sorry the URL cannot be opened at this instance because a browswer"\
+                                 "cannot be found.\nYou can view the profile at \nhttps://github.com/xzeck/");
+      Message.setIcon(Message.Information);
+      Message.button(Message.Ok);
+      Message.exec();
+    }
+}
+
+void MainWindow::on_actionQuit_triggered()
+{
+    SLOT(quit());
+}

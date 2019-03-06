@@ -1,4 +1,5 @@
 #include "ieee754doubleprecision.h"
+
 #include <QtGlobal>
 #include <QDebug>
 #include <vector>
@@ -11,7 +12,7 @@ QString BinaryWhole;
 QString BinaryDec;
 QString Mantisa;
 QString ExponentBinary;
-QString Binary_Final;
+QString BinaryFinal;
 bool    Sign;
 
 void Initializer()
@@ -23,7 +24,7 @@ void Initializer()
    BinaryDec      = "";
    Mantisa        = "";
    ExponentBinary = "";
-   Binary_Final   = "";
+   BinaryFinal    = "";
    Value          = "";
 
 }
@@ -35,7 +36,6 @@ QString Generation::GenerateDoublePrecision(QString Value) //Generates double pr
     double RawValue = Value.toDouble(); //Get the Raw from QString and convert to Double
     qint64 RawValIntPart = static_cast<qint64>(RawValue); //Static cast RawValue to Int, to get the Integer part and remove decimal value
     double RawValueDecPart = RawValue - RawValIntPart; // Subtracting Int part from Raw value to get decimal value
-    QString Binary; //Will store binary
 
     //qDebug() << RawValIntPart << " " <<RawValueDecPart; // for debugging purposes
 
@@ -44,13 +44,11 @@ QString Generation::GenerateDoublePrecision(QString Value) //Generates double pr
 
     //Formatting stuff ( If Decimal is zero, then there's no need to display)
     if(Dec == nullptr)
-      Binary = Whole;
+      BinaryFinal = Whole;
     else
-      Binary = Whole + "." + Dec;
+      BinaryFinal = Whole + "." + Dec;
 
-    Binary_Final = Binary;
-
-    return Binary_Final;
+    return BinaryFinal;
 }
 
 
@@ -94,7 +92,7 @@ QString Binary::GenerateBinaryWholePart(qint64 WholePart)
     //qDebug() << "BinWholeRev" << Binary_Whole;
 
     return BinaryWhole;
-  }
+}
 
 
 QString Binary::GenerateBinaryDecimalPart(double DecimalPart)
@@ -118,6 +116,7 @@ QString Binary::GenerateBinaryDecimalPart(double DecimalPart)
   return BinaryDec;
 }
 
+
 QString Finalizers::GiveExponentBinary()
 {
   Binary Bin;
@@ -131,32 +130,39 @@ QString Finalizers::GiveExponentBinary()
   return ExponentBinary;
 }
 
+
 QString Finalizers::GiveMantisa(QString Value)
 {
-    Binary Bin;
-    Mantisa = "";
-    QString replica;
-    std::vector<QString> Mantisa_Vector;
-    double temp = Value.toDouble();
+    Binary  Bin;
+    QString Replica;
+
+    double temp        = Value.toDouble();
     qint64 IntegerPart = static_cast<qint64>(temp);
 
-    QString Replica = Bin.GenerateBinaryWholePart(IntegerPart);
+    std::vector<QString> Mantisa_Vector;
 
+    Mantisa = "";
+
+
+    Replica= Bin.GenerateBinaryWholePart(IntegerPart);
 
     for( auto x : Replica)
       {
         Mantisa_Vector.push_back(x);
       }
 
+    Replica = "";
+
     for(unsigned long i = 2; i<=(Mantisa_Vector.size());i++)
       {
-        replica += Mantisa_Vector[i-1];
+        Replica += Mantisa_Vector[i-1];
       }
 
-   Mantisa = replica;
+   Mantisa = Replica;
 
    return Mantisa;
 }
+
 
 QString Finalizers::FinalVal()
 {

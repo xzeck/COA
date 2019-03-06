@@ -13,7 +13,7 @@
   extern QString BinaryDec;
   extern QString Mantisa;
   extern QString ExponentBinary;
-  extern QString Binary_Final;
+  extern QString BinaryFinal;
   extern bool    Sign;
 
    void Initializer();
