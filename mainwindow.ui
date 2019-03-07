@@ -28,6 +28,9 @@
   <property name="documentMode">
    <bool>false</bool>
   </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Triangular</enum>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <property name="styleSheet">
     <string notr="true"/>
@@ -55,7 +58,7 @@
      </font>
     </property>
     <property name="autoFillBackground">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true"/>
@@ -88,6 +91,9 @@
     <property name="toolTip">
      <string>Evaluate</string>
     </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
     <property name="text">
      <string>Evaluate</string>
     </property>
@@ -112,6 +118,9 @@
     <property name="toolTip">
      <string>Type your number here</string>
     </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
@@ -133,6 +142,9 @@
       <width>871</width>
       <height>301</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
     </property>
     <layout class="QHBoxLayout" name="BaseHorizontalLayout" stretch="0,1">
      <property name="spacing">
@@ -171,14 +183,20 @@
            <pointsize>16</pointsize>
           </font>
          </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Plain</enum>
          </property>
          <property name="lineWidth">
-          <number>5</number>
+          <number>1</number>
          </property>
          <property name="text">
           <string>   Binary Value :</string>
@@ -201,14 +219,17 @@
            <pointsize>16</pointsize>
           </font>
          </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::Box</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Plain</enum>
          </property>
          <property name="text">
           <string>   Sign :</string>
@@ -231,14 +252,17 @@
            <pointsize>16</pointsize>
           </font>
          </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::Box</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Plain</enum>
          </property>
          <property name="text">
           <string>   Exponent :</string>
@@ -261,14 +285,17 @@
            <pointsize>16</pointsize>
           </font>
          </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::Box</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Plain</enum>
          </property>
          <property name="text">
           <string>   Mantisa :</string>
@@ -284,6 +311,12 @@
       <layout class="QVBoxLayout" name="TextVerticalLayout">
        <item>
         <widget class="QLabel" name="BinaryDisplayLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>100</width>
@@ -298,14 +331,17 @@
          <property name="toolTip">
           <string>Displays the Binary value of number you entered</string>
          </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::Box</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Plain</enum>
          </property>
          <property name="text">
           <string/>
@@ -328,14 +364,17 @@
          <property name="toolTip">
           <string>Shows the sign of the number, 0 is for positive and 1 is for negative</string>
          </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::Box</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Plain</enum>
          </property>
          <property name="text">
           <string/>
@@ -361,14 +400,17 @@
          <property name="toolTip">
           <string>Shows the binary value of the exponent</string>
          </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::Box</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Plain</enum>
          </property>
          <property name="text">
           <string/>
@@ -391,14 +433,17 @@
          <property name="toolTip">
           <string>Displays the Mantisa</string>
          </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::Box</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Plain</enum>
          </property>
          <property name="text">
           <string/>
@@ -422,6 +467,9 @@
      <font>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true"/>
@@ -450,11 +498,14 @@
     <property name="toolTip">
      <string>Final converted format with  implied 1</string>
     </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+     <enum>QFrame::Box</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Plain</enum>
@@ -472,8 +523,14 @@
       <height>51</height>
      </rect>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="text">
      <string>Dark Mode</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -483,17 +540,25 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
+    <widget class="QMenu" name="menuGitHub">
+     <property name="title">
+      <string>GitHub</string>
+     </property>
+     <addaction name="separator"/>
+     <addaction name="actionAjay_Nair"/>
+     <addaction name="actionHrishikesh_Nair"/>
+    </widget>
     <addaction name="separator"/>
     <addaction name="actionHow_To"/>
     <addaction name="actionAbout"/>
-    <addaction name="actionGitHub"/>
+    <addaction name="menuGitHub"/>
    </widget>
    <widget class="QMenu" name="menuQuit">
     <property name="title">
@@ -529,14 +594,19 @@
     <string>About</string>
    </property>
   </action>
-  <action name="actionGitHub">
-   <property name="text">
-    <string>GitHub</string>
-   </property>
-  </action>
   <action name="actionQuit">
    <property name="text">
     <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionAjay_Nair">
+   <property name="text">
+    <string>Ajay Nair</string>
+   </property>
+  </action>
+  <action name="actionHrishikesh_Nair">
+   <property name="text">
+    <string>Hrishikesh Nair</string>
    </property>
   </action>
  </widget>

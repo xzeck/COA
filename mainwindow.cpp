@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
-  this->setStyleSheet("background-color: #ffffff;");
+  this->setStyleSheet("background-color: white;");
   this->setStyleSheet("QLabel{border:2px solid #009688}; border-radius:10px;");
   ui->UserValue->setStyleSheet("border:3px solid #009688; border-radius:10px;");
   ui->ValuePushButton->setStyleSheet("border:2px solid #009688; border-radius:10px;");
@@ -105,64 +105,88 @@ void MainWindow::on_ValuePushButton_clicked()
 }
 
 
-
-
-void MainWindow::on_checkBox_stateChanged(int arg1)
-{
-    if(2 == arg1)
-      {
-
-        this->setStyleSheet("background-color: #2C3539;");
-        this->setStyleSheet("QLabel{border:2px solid #009688}; border-radius:10px;");
-        ui->UserValue->setStyleSheet("border:3px solid #009688; border-radius:10px;");
-        ui->ValuePushButton->setStyleSheet("border:2px solid #009688; border-radius:10px;");
-      }
-    else if (0 == arg1)
-      {
-        this->setStyleSheet("background-color: #EDF1E7;color : black");
-
-      }
-}
-
 void MainWindow::on_actionAbout_triggered()
 {
 
   QMessageBox Message;
   QRect  Geo = MainWindow::geometry();
-  int MboxWidth = Geo.width()/4;
+  int MBoxWidth = Geo.width()/4;
   int MBoxHeight = Geo.height()/4;
 
-  int X = Geo.x() + Geo.width()/2 - (MboxWidth/2);
+  int X = Geo.x() + Geo.width()/2 - (MBoxWidth/2);
   int Y = Geo.y() + Geo.height()/2 - (MBoxHeight/2);
-  Message.setGeometry(X,Y,MboxWidth, MBoxHeight);
-  Message.setInformativeText("Project : Converting given input to IEEE 754 Double Precision Format\n\nAjay Nair : 402");
+  Message.setGeometry(X,Y,MBoxWidth, MBoxHeight);
+  Message.setInformativeText("Project : Converting given input to IEEE 754 Double Precision Format\n\nAjay Nair : 402\n"\
+                             "Gladson Daniel Roy : 413\nHrishikesh Nair : 418");
   Message.setIcon(Message.Information);
   Message.button(Message.Ok);
   Message.exec();
 }
 
-void MainWindow::on_actionGitHub_triggered()
-{
 
+void MainWindow::on_actionQuit_triggered()
+{
+    SLOT(quit());
+}
+
+void MainWindow::on_actionAjay_Nair_triggered()
+{
   if(!QDesktopServices::openUrl(QUrl("https://github.com/xzeck/",QUrl::TolerantMode)))
     {
       QMessageBox Message;
       QRect  Geo = MainWindow::geometry();
-      int MboxWidth = Geo.width()/4;
+      int MBoxWidth = Geo.width()/4;
       int MBoxHeight = Geo.height()/4;
 
-      int X = Geo.x() + Geo.width()/2 - (MboxWidth/2);
+      int X = Geo.x() + Geo.width()/2 - (MBoxWidth/2);
       int Y = Geo.y() + Geo.height()/2 - (MBoxHeight/2);
-      Message.setGeometry(X,Y,MboxWidth, MBoxHeight);
+      Message.setGeometry(X,Y,MBoxWidth, MBoxHeight);
       Message.setInformativeText("Sorry the URL cannot be opened at this instance because a browswer"\
                                  "cannot be found.\nYou can view the profile at \nhttps://github.com/xzeck/");
+
+      Message.setWindowTitle("cannot open browser");
       Message.setIcon(Message.Information);
       Message.button(Message.Ok);
       Message.exec();
     }
 }
 
-void MainWindow::on_actionQuit_triggered()
+void MainWindow::on_actionHrishikesh_Nair_triggered()
 {
-    SLOT(quit());
+  if(!QDesktopServices::openUrl(QUrl("https://github.com/DarkStar24",QUrl::TolerantMode)))
+    {
+      QMessageBox Message;
+      QRect  Geo = MainWindow::geometry();
+      int MBoxWidth = Geo.width()/4;
+      int MBoxHeight = Geo.height()/4;
+
+      int X = Geo.x() +  Geo.width()/2 - (MBoxWidth/2);
+      int Y = Geo.y() + Geo.height()/2 - (MBoxHeight/2);
+      Message.setGeometry(X,Y,MBoxWidth, MBoxHeight);
+      Message.setInformativeText("Sorry the URL cannot be opened at this instance because a browswer"\
+                                 "cannot be found.\nYou can view the profile at \nhttps://github.com/DarkStar24");
+
+      Message.setWindowTitle("cannot open browser");
+      Message.setIcon(Message.Information);
+      Message.button(Message.Ok);
+      Message.exec();
+    }
+}
+
+void MainWindow::on_DarkModeCheckBox_stateChanged(int arg1)
+{
+  if(2 == arg1)
+    {
+
+      this->setStyleSheet("background-color: #2C3539;");
+      this->setStyleSheet("QLabel{border:2px solid #009688}; border-radius:10px;");
+      ui->UserValue->setStyleSheet("border:3px solid #009688; border-radius:10px;");
+      ui->ValuePushButton->setStyleSheet("border:2px solid #009688; border-radius:10px;");
+    }
+  else if (0 == arg1)
+    {
+      this->setStyleSheet("background-color: #EDF1E7; color: black; QLabel{border: 2px solid black; border-radius: 10px};");
+      ui->UserValue->setStyleSheet("border:3px solid black; border-radius:10px;");
+      ui->ValuePushButton->setStyleSheet("border:2px solid black; border-radius:10px;");
+    }
 }
