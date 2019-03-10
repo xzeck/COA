@@ -34,7 +34,7 @@ QString Generation::GenerateDoublePrecision(QString Value) //Generates double pr
 {
     Binary Bin;
     double RawValue = Value.toDouble(); //Get the Raw from QString and convert to Double
-    qint64 RawValIntPart = static_cast<qint64>(RawValue); //Static cast RawValue to Int, to get the Integer part and remove decimal value
+    auto   RawValIntPart = static_cast<qint64>(RawValue); //Static cast RawValue to Int, to get the Integer part and remove decimal value
     double RawValueDecPart = RawValue - RawValIntPart; // Subtracting Int part from Raw value to get decimal value
 
     //qDebug() << RawValIntPart << " " <<RawValueDecPart; // for debugging purposes
@@ -74,7 +74,7 @@ QString Binary::GenerateBinaryWholePart(qint64 WholePart)
     //Push the value to a vector
     for( auto x : BinaryWhole)
       {
-        RevBinWhole.push_back(x);
+        RevBinWhole.emplace_back(x);
       }
     //Reverse the vector.
     //Obviously a linked stack could be used, but this is much easier.
@@ -137,7 +137,7 @@ QString Finalizers::GiveMantisa(QString Value)
     QString Replica;
 
     double temp        = Value.toDouble();
-    qint64 IntegerPart = static_cast<qint64>(temp);
+    auto   IntegerPart = static_cast<qint64>(temp);
 
     std::vector<QString> Mantisa_Vector;
 

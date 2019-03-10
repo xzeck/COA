@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "ieee754doubleprecision.h"
+#include "license.h"
 
 #include <QPlainTextEdit>
 #include <QtDebug>
@@ -62,7 +63,6 @@ void MainWindow::on_ValuePushButton_clicked()
 
   Finalizers Fin;
   QString    Bin,Final;
-  QRegExp    re("^[a-zA-Z]"); //Regular Expression pattern, pattern checks for alphabets
 
 
   Value = ui->UserValue->text(); //Get text from UserValue LineEdit
@@ -189,4 +189,12 @@ void MainWindow::on_DarkModeCheckBox_stateChanged(int arg1)
       ui->UserValue->setStyleSheet("border:3px solid black; border-radius:10px;");
       ui->ValuePushButton->setStyleSheet("border:2px solid black; border-radius:10px;");
     }
+}
+
+void MainWindow::on_actionLicense_triggered()
+{
+  license l;
+  l.setModal(true);
+  l.exec();
+
 }

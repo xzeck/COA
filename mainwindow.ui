@@ -559,6 +559,7 @@
     <addaction name="actionHow_To"/>
     <addaction name="actionAbout"/>
     <addaction name="menuGitHub"/>
+    <addaction name="actionLicense"/>
    </widget>
    <widget class="QMenu" name="menuQuit">
     <property name="title">
@@ -607,6 +608,11 @@
   <action name="actionHrishikesh_Nair">
    <property name="text">
     <string>Hrishikesh Nair</string>
+   </property>
+  </action>
+  <action name="actionLicense">
+   <property name="text">
+    <string>License</string>
    </property>
   </action>
  </widget>

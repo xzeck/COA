@@ -28,6 +28,8 @@ private slots:
 
   void on_DarkModeCheckBox_stateChanged(int arg1);
 
+  void on_actionLicense_triggered();
+
 private:
   Ui::MainWindow *ui;
 };
